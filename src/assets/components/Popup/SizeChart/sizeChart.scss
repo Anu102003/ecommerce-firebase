@@ -1,0 +1,47 @@
+@import "../../../styles/defalutMixins.scss";
+
+.size-popup {
+    @include popup(80%, 40%);
+    overflow-x: hidden;
+    padding: 20px;
+
+    .head {
+        font-size: 18px;
+        font-weight: 800;
+        text-align: center;
+        padding: 1.2rem 0 0.5rem;
+        width: 100%;
+        color: #0c3c9b;
+    }
+
+    .size-table {
+        margin-top: 3rem;
+        width: 100%;
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+        border-left: 1px solid black;
+        .row {
+            display: flex;
+            .col {
+                border-bottom: 1px solid black;
+                text-align: center;
+                padding: 10px;
+                width: 30%;
+
+                @media only screen and (max-width:870px) {
+                    min-width: 100px;
+                }
+            }
+
+            .c-head {
+                font-weight: 700;
+                background-color: #F0F2F2;
+            }
+        }
+
+        @media only screen and (max-width:870px) {
+            display: block;
+            overflow-x: scroll;
+        }
+    }
+}
