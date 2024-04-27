@@ -35,7 +35,6 @@ export const NavBar = ({ navPopup, setNavPopup ,navMenuSelected,setNavMenuSelect
 
     const handleRedirect = (menu) => {
         navigate(`/${menu.toLowerCase()}`);
-        setNavMenuSelected(menu)
       };
     useEffect(() => {
         if (pathname === '/') setNavMenuSelected(Home)

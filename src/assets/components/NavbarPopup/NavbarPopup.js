@@ -48,6 +48,11 @@ export const NavbarPopup = ({ setNavPopup, type }) => {
             navigate("/payments")
             setNavPopup(false)
         }
+        if (menu === "Cart") {
+            navigate("/cart")
+            setNavPopup(false)
+            console.log("first")
+        }
     }
     return (
         <div className='popup-navbar'>
@@ -83,7 +88,7 @@ export const NavbarPopup = ({ setNavPopup, type }) => {
                                 <p className='content' >
                                     <FontAwesomeIcon icon={faHeart} className='icon-style' />
                                     Wishlist</p>
-                                <p className='content' >
+                                <p className='content' onClick={() => { handleRedirect("Cart") }} >
                                     <FontAwesomeIcon icon={faShoppingCart} className='icon-style' />Cart</p>
                             </> :
                             <>

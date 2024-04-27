@@ -12,7 +12,6 @@ import Menu from '../../../Context/LocaleContext';
 export const MainPage = () => {
     const [navPopup, setNavPopup] = useState(false)
     const [navMenuSelected, setNavMenuSelected] = useState("Home")
-
     return (
         <>
             <div className='homepage'>

@@ -74,6 +74,7 @@
             margin-top: 7rem;
 
             .p-img {
+                height: 500px;
                 img {
                     @include img;
                 }
@@ -121,6 +122,13 @@
                 font-size: 18px;
                 font-weight: 700;
                 padding: 0.5rem 0 0.5rem;
+            }
+
+            .about-container {
+                padding: 0.5rem 0 2rem;
+                .about-list{
+                    padding: 0.5rem 0;
+                }
             }
 
             .ratings {
@@ -227,6 +235,9 @@
     }
 
     .size-popup-parent {
+        @include popup-parent;
+    }
+    .buy-popup-parent {
         @include popup-parent;
     }
 

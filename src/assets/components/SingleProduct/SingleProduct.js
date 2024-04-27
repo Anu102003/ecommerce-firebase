@@ -8,7 +8,8 @@ import { SizeChart } from '../Popup/SizeChart/SizeChart';
 export const SingleProduct = () => {
     const location = useLocation();
     const product = location?.state?.details
-    console.log(product)
+    const [buyEnabled, setBuyEnabled] = useState(false)
+
     const [imgSelect, setImgSelect] = useState(product.thumbnail)
     const [ratings, setRatings] = useState([]);
     useEffect(() => {
@@ -28,10 +29,28 @@ export const SingleProduct = () => {
         });
         setRatings(newRatings);
     }, [product.review]);
+    useEffect(() => {
+        function handle(e) {
+            if (e.target.className === "buy-popup-parent") {
+                setBuyEnabled(false)
+            }
+        }
+        window.addEventListener("click", handle)
+        return () => window.removeEventListener("click", handle)
+    }, [])
     const [openSizeChart, setOpenSizeChart] = useState(false);
-    const sizeChart = () => {
-        setOpenSizeChart(true)
-    }
+    // const sizeChart = () => {
+    //     setOpenSizeChart(true)
+    // }
+    // useEffect(() => {
+    //     function handle(e) {
+    //         if (e.target.className === "size-popup-parent") {
+    //             setOpenSizeChart(false)
+    //         }
+    //     }
+    //     window.addEventListener("click", handle)
+    //     return () => window.removeEventListener("click", handle)
+    // }, [])
     useEffect(() => {
         function handle(e) {
             if (e.target.className === "size-popup-parent") {
@@ -42,9 +61,20 @@ export const SingleProduct = () => {
         return () => window.removeEventListener("click", handle)
     }, [])
     const about = product.description.split('\\n')
-    console.log(about)
-    const abou = product.description.split('\n').join('');
-// console.log(abou);
+  
+    const handleCart = () => {
+        let cart = JSON.parse(window.localStorage.getItem('cart')) || [];
+        if (!Array.isArray(cart)) {
+            cart = [];
+        }
+        cart.filter((e) => {
+            console.log(e.id,product.id)
+        })
+        cart = cart.filter((e) => e.id !== product.id);
+        cart.push({...product,total:Number(product.overallPrice)});
+        window.localStorage.setItem('cart', JSON.stringify(cart));
+        setOpenSizeChart(true)
+    }
     return (
         <>
             <div className='single-product'>
@@ -73,8 +103,8 @@ export const SingleProduct = () => {
                 </div>
                 <div className='d-2'>
                     <div className='btn'>
-                        <button className='cart-btn'>Add to cart</button>
-                        <button className='buy-btn'>Buy Now</button>
+                        <button className='cart-btn' onClick={handleCart}>Add to cart</button>
+                        <button className='buy-btn' onClick={() => { setBuyEnabled(true) }}>Buy Now</button>
                     </div>
                     <div className='details'>
                         <p className='brand'>Brand: {product.brand}</p>
@@ -100,7 +130,8 @@ export const SingleProduct = () => {
                             <span className='colour-box' style={{ backgroundColor: product.colour }}></span>
                             {product.colour}</p>
                         <p className='size'>Size : <span className='size-box'>{product.size}</span></p>
-                        <p className='size-chart' onClick={sizeChart}>Size Chart
+                        {/* onClick={sizeChart} */}
+                        <p className='size-chart' >Size Chart
                             <FontAwesomeIcon icon={faRulerHorizontal} size="2xl" style={{ color: "#0c3c9b", paddingLeft: "15px" }} /></p>
                         <hr></hr>
                         <p className='title'>Product details</p>
@@ -139,16 +170,25 @@ export const SingleProduct = () => {
                         </div>
                         <hr></hr>
                         <p className='title'>About this item</p>
-                        {about.map((detail, index) => (
-                            <li key={index}>{detail}</li>
-                        ))}
+                        <div className='about-container'>
+                       {about.map((detail, index) => (
+                            <li key={index} className='about-list'>{detail}</li>
+                        ))}     
+                        </div>
+                        
 
                     </div>
                 </div>
                 {
                     openSizeChart &&
                     <div className='size-popup-parent'>
-                        <SizeChart setOpenSizeChart={setOpenSizeChart} />
+                        <SizeChart setChart={setOpenSizeChart} cart={true}/>
+                    </div>
+                }
+                {
+                    buyEnabled &&
+                    <div className='buy-popup-parent'>
+                        <SizeChart data={product} setChart={setBuyEnabled} totalPrice={product.overallPrice} />
                     </div>
                 }
             </div>

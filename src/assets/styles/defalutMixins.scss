@@ -45,6 +45,30 @@
     width: 100%;
 }
 
+@mixin btn($bg) {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    width: 200px;
+    color: white;
+    height: 3rem;
+    background-color: $bg;
+    border-radius: 10px;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+@mixin btn-basic {
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+    border: 1px solid black;
+    margin: 0 1rem;
+    @include displayflex;
+    border-radius: 5px;
+}
+
 @mixin fontS10B700 {
     font-size: 10px;
     font-weight: 700;

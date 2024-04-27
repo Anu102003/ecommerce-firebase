@@ -4,7 +4,9 @@ import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as faHeartSoild, faUser as faUserSoild } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import "./_navbarIcons.scss"
+import { useNavigate } from 'react-router-dom';
 export const NavbarIcons = () => {
+    const navigate=useNavigate()
     const profile = 'profile'
     const wishlist = 'wishlist'
     const cart = 'cart'
@@ -14,7 +16,12 @@ export const NavbarIcons = () => {
         wishlist: false,
         cart: false
     });
-    
+    const handleCart = () => {
+        navigate("/cart")
+    }
+    const handleOrders = () => {
+        navigate("/order")
+    }
     const handleIconHover = (key, isHovered) => {
         setIconHovered(prevValue => ({
             ...prevValue,
@@ -42,6 +49,7 @@ export const NavbarIcons = () => {
             <div className='icon__cart'
                 onMouseEnter={() => handleIconHover(cart, true)}
                 onMouseLeave={() => handleIconHover(cart, false)}
+                onClick={handleCart}
             >
                 <FontAwesomeIcon icon={faShoppingCart} color={"purple"} />
                 <span className='icon-txt' style={{ color: iconHovered.cart && 'purple' }}>Cart</span>

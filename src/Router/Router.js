@@ -13,6 +13,8 @@ import { Customer } from '../pages/Admin/Customer/Customer'
 import { Payments } from '../pages/Admin/Payments/Payments'
 import { Orders } from '../pages/Admin/Orders/Orders'
 import { SingleProduct } from '../assets/components/SingleProduct/SingleProduct'
+import { Cart } from '../pages/User/Cart/Cart'
+import { SingleOrders } from '../pages/User/Orders/SingleOrders'
 
 export const Router = () => {
     const { email, authenticated } = useSelector(state => state.user);
@@ -36,8 +38,9 @@ export const Router = () => {
                         <Route path="/electronics" element={(authenticated && !admin) ? <ListAllProducts /> : <Navigate to="/signin" />} />
                         <Route path="/mobile" element={(authenticated && !admin) ? <ListAllProducts /> : <Navigate to="/signin" />} />
                         <Route path="/product" element={(authenticated && !admin) ? <SingleProduct /> : <Navigate to="/signin" />} />
-
                     </Route>
+                    <Route path="/cart" element={(authenticated && !admin) ? <Cart /> : <Navigate to="/signin" />} />
+                    <Route path="/order" element={(authenticated && !admin) ? <SingleOrders/> : <Navigate to="/signin" />} />
 
                     <Route path="/" element={(authenticated && admin) ? <AdminPage /> : <Navigate to="/signin" />} >
                         <Route index element={(authenticated && admin) ? <Dashboard /> : <Navigate to="/signin" />} />
