@@ -1,58 +1,24 @@
 import React from 'react'
 import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faMagnifyingGlass, faMobileScreenButton, faPerson, faPersonDress, faShoppingCart, faStore } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faMagnifyingGlass, faMobileScreenButton, faPerson, faPersonDress, faRightFromBracket, faShoppingCart, faStore } from '@fortawesome/free-solid-svg-icons'
 import "./_navbarPopup.scss"
 import { useNavigate } from 'react-router-dom'
-export const NavbarPopup = ({ setNavPopup, type }) => {
+import { useDispatch } from 'react-redux'
+import { logout } from '../../../Redux/Action'
+export const NavbarPopup = ({ setNavPopup, type, setProfilePopup }) => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const handleRedirect = (menu) => {
-        console.log(menu)
-        if (menu === "Home") {
-            navigate("/home")
-            setNavPopup(false)
+        if (menu === "Logout") {
+            dispatch(logout());
+            navigate("/signin");
+        } else if (menu === "Orders") {
+            navigate(`/${menu.toLowerCase()}`, { state: { user: true } })
+        } else {
+            navigate(`/${menu.toLowerCase()}`);
         }
-        if (menu === "Men") {
-            navigate("/men")
-            setNavPopup(false)
-        }
-        if (menu === "Women") {
-            navigate("/women")
-            setNavPopup(false)
-        }
-        if (menu === "Electronics") {
-            navigate("/electronics")
-            setNavPopup(false)
-        }
-        if (menu === "Mobile") {
-            navigate("/mobile")
-            setNavPopup(false)
-        }
-        if (menu === "Dashboard") {
-            navigate("/dashboard")
-            setNavPopup(false)
-        }
-        if (menu === "Products") {
-            navigate("/products")
-            setNavPopup(false)
-        }
-        if (menu === "Orders") {
-            navigate("/orders")
-            setNavPopup(false)
-        }
-        if (menu === "Customer") {
-            navigate("/customer")
-            setNavPopup(false)
-        }
-        if (menu === "Payments") {
-            navigate("/payments")
-            setNavPopup(false)
-        }
-        if (menu === "Cart") {
-            navigate("/cart")
-            setNavPopup(false)
-            console.log("first")
-        }
+        setNavPopup(false)
     }
     return (
         <div className='popup-navbar'>
@@ -82,34 +48,38 @@ export const NavbarPopup = ({ setNavPopup, type }) => {
                                 <p className='content' onClick={() => { handleRedirect("Mobile") }}>
                                     <FontAwesomeIcon icon={faMobileScreenButton} className='icon-style' />
                                     Mobiles</p>
-                                <p className='content'>
+                                <p className='content' onClick={() => { handleRedirect("Profile") }}>
                                     <FontAwesomeIcon icon={faUser} className='icon-style' />
                                     Profile</p>
-                                <p className='content' >
+                                <p className='content' onClick={() => { handleRedirect("Wishlist") }} >
                                     <FontAwesomeIcon icon={faHeart} className='icon-style' />
                                     Wishlist</p>
                                 <p className='content' onClick={() => { handleRedirect("Cart") }} >
                                     <FontAwesomeIcon icon={faShoppingCart} className='icon-style' />Cart</p>
+                                <p className='content' onClick={() => { handleRedirect("Orders") }} >
+                                    <FontAwesomeIcon icon={faStore} className='icon-style' />Orders</p>
                             </> :
                             <>
-                                <p className='content' onClick={() => { handleRedirect("Dashboard") }}>
+                                {/* <p className='content' onClick={() => { handleRedirect("Dashboard") }}>
                                     <FontAwesomeIcon icon={faHouse} className='icon-style' />
                                     Dashboard
-                                </p>
+                                </p> */}
                                 <p className='content' onClick={() => { handleRedirect("Products") }}>
                                     <FontAwesomeIcon icon={faPerson} className='icon-style' />
                                     Products</p>
-                                <p className='content' onClick={() => { handleRedirect("Orders") }}>
-                                    <FontAwesomeIcon icon={faPersonDress} className='icon-style' />
+                                <p className='content' onClick={() => { handleRedirect("Order") }}>
+                                    <FontAwesomeIcon icon={faStore} className='icon-style' />
                                     Orders</p>
-                                <p className='content' onClick={() => { handleRedirect("Customer") }}>
+                                {/* <p className='content' onClick={() => { handleRedirect("Customer") }}>
                                     <FontAwesomeIcon icon={faStore} className='icon-style' />
                                     Customer</p>
                                 <p className='content' onClick={() => { handleRedirect("Payments") }}>
                                     <FontAwesomeIcon icon={faStore} className='icon-style' />
-                                    Payments</p>
+                                    Payments</p> */}
                             </>
                     }
+                    <p className='content' onClick={() => { handleRedirect("Logout") }} >
+                    <FontAwesomeIcon icon={faRightFromBracket} className='icon-style' />Logout</p>
                 </div>
 
             </div>

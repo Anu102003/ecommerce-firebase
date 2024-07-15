@@ -1,15 +1,15 @@
 @import "../../styles/defalutMixins.scss";
 
 $border: 2px solid #ededed;
-$box-shadow:rgba(0, 0, 0, 0.378) 10px 15px 36px -28px inset;
-$bg:#f0efef42;
+$box-shadow: rgba(0, 0, 0, 0.378) 10px 15px 36px -28px inset;
+$bg: #f0efef42;
+
 .product-card-wrapper {
     .product-card {
-        $s20:20px;
+        $s20: 20px;
         margin: $s20;
         border: $border;
         padding: $s20;
-        cursor: pointer;
         min-height: 560px;
         width: 330px;
         background: $bg;
@@ -21,14 +21,25 @@ $bg:#f0efef42;
         &__img {
             height: 300px;
             width: 100%;
+            position: relative;
 
             img {
                 @include max-ht-wt;
                 object-fit: contain;
+                cursor: pointer;
+            }
+
+            .wishlist {
+                position: absolute;
+                right: 0;
+                top: 0;
+                cursor: pointer;
             }
         }
 
         &__contents {
+            cursor: pointer;
+
             .product {
                 &__brand {
                     @include fontS14B700;
@@ -107,6 +118,7 @@ $bg:#f0efef42;
                 }
             }
         }
+
         @media only screen and (max-width:400px) {
             width: auto;
             margin: 20px 0 0;

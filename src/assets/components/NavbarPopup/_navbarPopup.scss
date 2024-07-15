@@ -1,12 +1,15 @@
 @import "../../styles/defalutMixins.scss";
 
 .popup-navbar {
+    color: white;
     .menu-icons-container {
-        margin-top: 6rem;
-        background-color: purple;
-        color: white;
-        padding: 0.5rem 0;
+        z-index: 30;
         width: 100%;
+        padding:1rem;
+        position:sticky;
+        top:5rem;
+        background-color: purple;
+        
 
         .menu {
             .content {

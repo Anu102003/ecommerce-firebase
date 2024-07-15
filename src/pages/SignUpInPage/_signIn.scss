@@ -1,3 +1,149 @@
+// @import "../../assets/styles/defalutMixins.scss";
+
+// .signin {
+//     min-height: 500px;
+//     height: 50%;
+//     width: 70%;
+//     margin: 0 auto;
+//     margin-top: 5rem;
+//     display: flex;
+//     box-shadow: 0px 16px 48px 0px rgba(0, 0, 0, 0.176);
+
+//     &__left {
+//         width: 50%;
+//         background-color: #120a68e2;
+//         @include justifyCenter;
+
+//         .signin-container {
+//             padding-top: 5rem;
+
+//             .signin-logo {
+//                 height: 50px;
+//                 @include displayflex;
+//                 width: 100%;
+
+//                 img {
+//                     height: 50px;
+//                 }
+//             }
+
+//             .h-1 {
+//                 text-align: center;
+//                 color: white;
+//                 font-size: 26px;
+//                 font-weight: 900;
+//                 padding-top: 2rem;
+//             }
+
+//             .signin-options {
+//                 color: white;
+//                 font-size: 16px;
+//                 font-weight: 500;
+
+//                 text-align: center;
+
+//                 &>span {
+//                     font-weight: 700;
+//                     font-size: 18px;
+//                     cursor: pointer;
+
+//                     &:hover {
+//                         font-weight: 800;
+//                     }
+//                 }
+//             }
+
+//             .email-psw-options {
+//                 display: flex;
+//                 align-items: center;
+//                 flex-direction: column;
+//                 margin: 1rem 0;
+//                 &>input{
+//                     padding: 8px 10px;
+//                     font-size: 18px;
+//                     font-weight: 500;
+//                     border: none;
+//                     outline: none;
+//                     border-radius: 10px;
+//                 }
+//             }
+
+//             .or-div {
+//                 color: white;
+//                 padding: 1rem 0 0.5rem 0;
+//                 font-size: larger;
+//                 font-weight: bold;
+//             }
+//             .error{
+//                 color: rgb(239, 38, 38);
+//                 font-size: large;
+//                 font-weight: bold;
+//                 padding: 1rem 0 0.5rem 0;
+//             }
+//             .login-btn {
+//                 margin: 1rem 0;
+//                 @include btnBasic;
+//                 @include primaryBlueBgColor;
+//                 color: white;
+//                 font-size: 15px;
+//                 font-weight: bolder;
+//                 @include alignCenter;
+//                 gap: 1.25rem;
+//                 border-radius: 5px;
+//                 padding: 10px;
+
+//             }
+
+//             .signin-btn {
+//                 margin: 1rem 0;
+//                 @include btnBasic;
+//                 background-color: #2D2679;
+//                 color: white;
+//                 font-size: 15px;
+//                 font-weight: bolder;
+//                 @include alignCenter;
+//                 gap: 1.25rem;
+//                 border-radius: 5px;
+
+//                 >img {
+//                     border-radius: 50%;
+//                 }
+//             }
+
+//         }
+//     }
+
+//     &__right {
+//         width: 50%;
+//         @include displayflex;
+
+//         img {
+//             object-fit: cover;
+//             @include max-ht-wt;
+//         }
+
+//     }
+// }
+
+// @media only screen and (max-width:1200px) {
+//     .signin {
+//         height: 100%;
+//         width: 70%;
+//         justify-content: center;
+//         margin-top: 3rem;
+
+//         &__left {
+//             height: 100%;
+//             width: 100%;
+//             min-height: 500px;
+//             margin: 5px;
+//         }
+
+//         &__right {
+//             display: none;
+//         }
+//     }
+// }
 @import "../../assets/styles/defalutMixins.scss";
 
 .signin {
@@ -13,6 +159,7 @@
         width: 50%;
         background-color: aliceblue;
         @include justifyCenter;
+        background-color: #120a68e2;
 
         .signin-container {
             padding-top: 5rem;
@@ -32,10 +179,13 @@
                 @include btnBasic;
                 @include primaryBlueBgColor;
                 color:white;
+                font-size: large;
+                font-weight: bold;
                 @include alignCenter;
                 gap: 1.25rem;
-                padding: 0.5rem 3rem 0.5rem 0.5rem;
+                padding: 1rem;
                 border-radius: 5px;
+                
             }
 
         }

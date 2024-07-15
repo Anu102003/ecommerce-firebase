@@ -9,11 +9,11 @@ import { faBars, faMagnifyingGlass, faRightFromBracket, } from '@fortawesome/fre
 import i18n from '../../../i18n';
 
 export const Sidebar = ({ sidePopup, setSidePopup }) => {
-    const Dashboard = "Dashboard"
+    // const Dashboard = "Dashboard"
     const Products = "Products"
-    const Orders = "Orders"
+    const Order = "Order"
     const Customer = "Customer"
-    const Payments = "Payments"
+    // const Payments = "Payments"
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -34,14 +34,13 @@ export const Sidebar = ({ sidePopup, setSidePopup }) => {
     const handleRedirect = menu => {
         navigate(`/${menu.toLowerCase()}`);
     };
-
     useEffect(() => {
-        if (pathname === '/admin') setSideMenuSelected(Dashboard)
-        if (pathname === '/dashboard') setSideMenuSelected(Dashboard)
+        if (pathname === '/admin') setSideMenuSelected(Products)
+        // if (pathname === '/dashboard') setSideMenuSelected(Dashboard)
         if (pathname === '/products') setSideMenuSelected(Products)
-        if (pathname === '/orders') setSideMenuSelected(Orders)
+        if (pathname === '/order') setSideMenuSelected(Order)
         if (pathname === '/customer') setSideMenuSelected(Customer)
-        if (pathname === '/payments') setSideMenuSelected(Payments)
+        // if (pathname === '/payments') setSideMenuSelected(Payments)
     }, [pathname])
 
 
@@ -62,20 +61,20 @@ export const Sidebar = ({ sidePopup, setSidePopup }) => {
         <>
             <div className='sidebar'>
 
-                <div className='sidebar__logo' onClick={() => { handleRedirect(Dashboard) }}>
+                <div className='sidebar__logo' onClick={() => { handleRedirect(Products) }}>
                     <img src={basic.logoWhite} />
                 </div>
                 <div className='sidebar__menu'>
-                    <div className={`content ${sideMenuSelected === Dashboard && "active"}`} onClick={() => { handleRedirect(Dashboard) }}>Dashboard
-                    </div>
+                    {/* <div className={`content ${sideMenuSelected === Dashboard && "active"}`} onClick={() => { handleRedirect(Dashboard) }}>Dashboard
+                    </div> */}
                     <div className={`content ${sideMenuSelected === Products && "active"}`} onClick={() => { handleRedirect(Products) }}>Products
                     </div>
-                    <div className={`content ${sideMenuSelected === Orders && "active"}`} onClick={() => { handleRedirect(Orders) }}>Orders
+                    <div className={`content ${sideMenuSelected === Order && "active"}`} onClick={() => { handleRedirect(Order) }}>Order
                     </div>
-                    <div className={`content ${sideMenuSelected === Customer && "active"}`} onClick={() => { handleRedirect(Customer) }}>Customer
+                    {/* <div className={`content ${sideMenuSelected === Customer && "active"}`} onClick={() => { handleRedirect(Customer) }}>Customer
                     </div>
-                    <div className={`content ${sideMenuSelected === Payments && "active"}`} onClick={() => { handleRedirect(Payments) }}>Payments
-                    </div>
+                     <div className={`content ${sideMenuSelected === Payments && "active"}`} onClick={() => { handleRedirect(Payments) }}>Payments
+                    </div> */}
                 </div>
             </div>
 
@@ -83,20 +82,23 @@ export const Sidebar = ({ sidePopup, setSidePopup }) => {
             <div className='sidebar-left'>
                 <div className='search-logout-container'>
 
-                    <div className='search'>
+                    {/* <div className='search'>
                         <input type='text' placeholder='Search' />
                         <div className='search-icon'>
                             <FontAwesomeIcon icon={faMagnifyingGlass} color="gray" />
                         </div>
+                    </div> */}
+                    <div className='popup-logo' onClick={() => { handleRedirect(Home) }}>
+                        <img src={basic.logo} alt="Logo" />
                     </div>
 
                     <div className='profile-logout-wrapper'>
-                        <div className='select-language'>
+                        {/* <div className='select-language'>
                             <select className="select-language__select" value={locale} onChange={handleChange}>
                                 <option className="select-language__option" value="en">English</option>
                                 <option className="select-language__option" value="zh">Chinese</option>
                             </select>
-                        </div>
+                        </div> */}
                         <div className='profile-img'>
                             <img src={email.profileImg} />
                         </div>

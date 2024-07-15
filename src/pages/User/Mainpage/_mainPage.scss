@@ -2,9 +2,23 @@
 
 .homepage {
    @include max-ht-wt;
-    overflow-x: hidden;
+    // overflow-x: hidden;
+    .profile-popup-parent{
+        @include popup-parent;
+    }
 
     .outlet-container {
         min-height: 100vh;
+    }
+    .footer{
+        background-color: #F6F3EF;
+        padding-top: 0.2rem;
+        &>p{
+            text-align: center;
+            color: rgb(66, 66,66);
+            padding: 1rem;
+            font-size: 17px;
+            font-weight: 500;
+        }
     }
 }

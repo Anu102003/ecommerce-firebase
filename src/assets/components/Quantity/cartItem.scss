@@ -7,6 +7,7 @@
     padding: 3rem;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
     position: relative;
+    cursor: pointer;
     .close-icon {
         position: absolute;
         top: 1rem;
@@ -57,4 +58,14 @@
             }
         }
     }
+    @media only screen and (max-width:760px) {
+        // background-color: red;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+.cart-hover{
+    background-color: rgb(247, 247, 247);
 }

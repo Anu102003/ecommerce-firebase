@@ -1,21 +1,21 @@
 export const homeSlider = [
     {
-        url: "https://fabriclore.com/cdn/shop/articles/Blog-Banner.jpg?v=1673845503&width=1200",
+        url: "https://img.freepik.com/free-photo/image-modern-guy-holding-shopping-bag-shoulder-turn-shushing-camera-telling-se_1258-173901.jpg?t=st=1720524610~exp=1720528210~hmac=6ad700a38c971197f5a3edace1eb6011a46fea6cc45c4433b637276f141b4eae&w=1380",
         title: "Men",
         redirect:"/men"
     },
     {
-        url: "https://landingi.com/wp-content/uploads/2020/05/cover_ecommerce1.webp",
+        url: "https://img.freepik.com/free-photo/portrait-two-young-stylish-smiling-blond-women-holding-shopping-bags-women-dressed-summer-hipster-clothes-positive-models-posing-pink-wall_158538-7732.jpg?t=st=1720543183~exp=1720546783~hmac=bf1ae3c83908b2dd7f8cf4f28a8391bb9cbe51df49e13212fb3fe9797f699763&w=996",
         title: "Women",
         redirect:"/women"
     },
     {
-        url: "https://i.pinimg.com/736x/fd/56/fe/fd56fe106a889d7842bd4e519a95d5c8.jpg",
+        url: "https://img.freepik.com/free-photo/attractive-young-couple-using-devices-together-tablet-laptop-smartphone-headphones-wireless-communication-gadgets-concept-technologies-connecting-people-self-insulation-lifestyle-home_155003-39614.jpg?t=st=1720543389~exp=1720546989~hmac=31078b882aac8f7b116b9243d47ba7992a67d6a8f43b977da96767454842f23d&w=996",
         title: "Electronics",
         redirect:"/electronics"
     },
     {
-        url: "https://budli.in/blog/wp-content/uploads/2022/12/2023refurbmobiles-800x405.jpg",
+        url: "https://img.freepik.com/free-photo/elegant-smartphone-composition_23-2149437084.jpg?t=st=1720526182~exp=1720529782~hmac=e89c4dc94db4dbb5fa199678dc3d99c27364b4a482fc4b1f5ac03eedb9f19c84&w=1060",
         title: "Mobile",
         redirect:"/mobile"
     }

@@ -18,6 +18,8 @@ export const Products = () => {
   const [editEnable, setEditEnable] = useState(false);
   const [editId, setEditId] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const searchQuery = (e) => {
     setSearchTerm(e.target.value);
@@ -43,6 +45,7 @@ export const Products = () => {
     if (categorySelect.length > 0) {
       const fetchData = async () => {
         try {
+          setLoading(true);
           const messagesCollection = collection(db, `${categorySelect.toLowerCase()}`);
           const q = query(messagesCollection, orderBy('productId', 'asc'));
           const messagesSnapshot = await getDocs(q);
@@ -55,6 +58,10 @@ export const Products = () => {
           setDetails(messagesData);
         } catch (error) {
           console.error("Error fetching data:", error);
+          setError(error);
+        }
+        finally {
+          setLoading(false);
         }
       };
       fetchData();
@@ -82,6 +89,18 @@ export const Products = () => {
       default:
         return <ListProducts category={categorySelect} details={filteredProducts} setEditId={setEditId} setEditEnable={setEditEnable} setProductData={setProductData} />
     }
+  }
+  if (loading) {
+    return <div className='order-table'>
+      <img src="https://www.syncfusion.com/blogs/wp-content/uploads/2022/06/Cupertino-Material-Animation.gif" height={400} />;
+    </div>
+  }
+
+  if (error) {
+    return (<div className='order-table'>
+      <div>Error: {error}</div>
+    </div>
+    )
   }
 
   return (

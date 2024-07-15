@@ -63,9 +63,13 @@ $search-txt-colour: rgb(62, 61, 61);
 
     .search-logout-container {
         display: flex;
-        justify-content: space-between;
-        padding: 1rem 0;
+        justify-content: end;
+        padding: 1rem ;
         border-bottom: $sidebar-border ;
+
+        .popup-logo {
+            display: none
+        }
 
         .search {
             @include alignCenter;
@@ -103,17 +107,19 @@ $search-txt-colour: rgb(62, 61, 61);
             .select-language {
                 border: 1px solid black;
                 border-radius: 10px;
-                
+
                 &__select {
                     padding: 0.3rem 0.8rem;
                     background-color: transparent;
                     @include inputBasic;
                     @include fontS16B400;
                 }
-                &__option{
-                    background: white; 
-                    color: black;   
-                    &:checked{
+
+                &__option {
+                    background: white;
+                    color: black;
+
+                    &:checked {
                         background: purple;
                         color: white;
                     }
@@ -162,6 +168,7 @@ $search-txt-colour: rgb(62, 61, 61);
             padding: 7px;
             margin-left: 1rem;
             cursor: pointer;
+            height: max-content;
 
             &:hover {
                 border: 2px solid purple;
@@ -173,6 +180,10 @@ $search-txt-colour: rgb(62, 61, 61);
                 background-color: purple;
                 color: white;
             }
+        }
+        @media only screen and (max-width:770px) {
+            justify-content: space-between;
+           
         }
     }
 }
@@ -208,6 +219,13 @@ $search-txt-colour: rgb(62, 61, 61);
         .search-logout-container {
             .more-icon-wrapper {
                 display: block;
+            }
+            .popup-logo {
+                display: block;
+                &>img{
+                    height: 50px;
+                    width: 152px;
+                }
             }
 
             .profile-logout-wrapper {

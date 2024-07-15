@@ -1,36 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import "./card.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { faHeart as faHeartSoild } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
-function Card({ product }) {
+function Card({ product, wishlistCard }) {
   const [ratings, setRatings] = useState([]);
   const navigate = useNavigate();
-  useEffect(() => {
-    const newRatings = [];
-    product.review.forEach((e) => {
-      for (let i = 0; i < 5; i++) {
-        if (i < e.ratingCount) {
-          newRatings.push(<p>
-            <FontAwesomeIcon icon={faStar} color="#FFA41C" />
-          </p>);
-        } else {
-          newRatings.push(<p>
-            <FontAwesomeIcon icon={faStarRegular} color="#FFA41C" />
-          </p>);
-        }
-      }
-    });
-    setRatings(newRatings);
-  }, [product.review]);
-
   const [showMore, setShowMore] = useState(false)
   const [isContentOverflowed, setIsContentOverflowed] = useState(false);
   const contentContainerRef = useRef(null);
   const [fitHeight, setFitHeigth] = useState(0);
   const contentContainer = contentContainerRef.current;
+  const [wishlist, setWishlist] = useState(false)
+
   useEffect(() => {
     if (showMore) {
       if (contentContainer.scrollHeight > 100) {
@@ -47,21 +31,85 @@ function Card({ product }) {
       contentContainer.scrollTop = 0;
     }
   }, [showMore, contentContainer]);
+
+  useEffect(() => {
+    checkWishlist();
+  }, []);
+
   const redirect = () => {
-    navigate("/product",{state:{details:product}})
+    navigate("/product", { state: { details: product } })
   }
+  const handleIconHover = (isHovered) => {
+    setWishlist(isHovered)
+  };
+
+  const handleWishlist = () => {
+    const wishlistString = window.localStorage.getItem('wishlist');
+    let wishlist = [];
+
+    if (wishlistString) {
+      try {
+        wishlist = JSON.parse(wishlistString);
+        if (!Array.isArray(wishlist)) {
+          wishlist = [];
+        }
+      } catch (error) {
+        wishlist = [];
+      }
+    }
+
+    const isProductInWishlist = wishlist.some(item => item.id === product.id);
+
+    if (isProductInWishlist) {
+      wishlist = wishlist.filter(item => item.id !== product.id);
+    } else {
+      wishlist.push(product);
+    }
+    window.localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    setWishlist(!isProductInWishlist);
+  };
+
+  const checkWishlist = () => {
+    const wishlistString = window.localStorage.getItem('wishlist');
+    let wishlistArray = [];
+
+    if (wishlistString) {
+      try {
+        wishlistArray = JSON.parse(wishlistString);
+        if (!Array.isArray(wishlistArray)) {
+          wishlistArray = [];
+        }
+      } catch (error) {
+        wishlistArray = [];
+      }
+    }
+
+    const isProductInWishlist = wishlistArray.some(item => item.id === product.id);
+    setWishlist(isProductInWishlist);
+  };
+
+  // console.log(product)
   return (
     <div className="product-card-wrapper">
-      <section className="product-card" onClick={redirect}>
+      <section className="product-card">
 
 
         {/* image */}
         <div className="product-card__img">
-          <img src={product.thumbnail} />
+          <img src={product.thumbnail} onClick={redirect} />
+          {!wishlistCard &&
+            <div className='wishlist'
+              // onMouseEnter={() => handleIconHover(!wishlist)}
+              // onMouseLeave={() => handleIconHover(!wishlist)}
+              onClick={handleWishlist}
+            >
+              <FontAwesomeIcon icon={wishlist ? faHeartSoild : faHeart} color={"purple"} size="xl" />
+            </div>
+          }
         </div>
 
         {/* contents */}
-        <div className="product-card__contents">
+        <div className="product-card__contents" onClick={redirect}>
           <div className="product">
 
             {/* brand */}

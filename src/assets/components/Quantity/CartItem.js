@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react'
 import "./cartItem.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
 
 export const CartItem = ({ data, setDeleteClick,deleteClick,setIncrementClick, incrementClick, setDecrementClick, decrementClick }) => {
     const [count, setCount] = useState(1)
+    const [hover,setHover]=useState(false)
+    const navigate=useNavigate()
     const handleIncrement = () => {
         setCount(count + 1)
         setIncrementClick(!incrementClick)
@@ -15,7 +18,10 @@ export const CartItem = ({ data, setDeleteClick,deleteClick,setIncrementClick, i
             setDecrementClick(!decrementClick)
         }
     }
-    console.log(data)
+    const redirect = () => {
+        navigate("/product",{state:{details:data}})
+      }
+    // console.log(data)
     const totalValue = {
         value: count * data.total,
         id: data.id,
@@ -41,11 +47,11 @@ export const CartItem = ({ data, setDeleteClick,deleteClick,setIncrementClick, i
     }
     return (
         <>
-            <div className='cart-items'>
+            <div className={`cart-items ${hover && 'cart-hover'}`} >
                 <div className='close-icon' onClick={()=>handleClose(data.id)}>
                     <FontAwesomeIcon icon={faClose} size='xl' />
                 </div>
-                <div className='img'>
+                <div className='img' onClick={redirect} onMouseOver={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>
                     <img src={data.thumbnail} />
                 </div>
                 <div className='details'>
