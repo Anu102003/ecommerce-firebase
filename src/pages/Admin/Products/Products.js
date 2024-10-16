@@ -92,7 +92,7 @@ export const Products = () => {
   }
   if (loading) {
     return <div className='order-table'>
-      <img src="https://www.syncfusion.com/blogs/wp-content/uploads/2022/06/Cupertino-Material-Animation.gif" height={400} />;
+      <img src="https://www.syncfusion.com/blogs/wp-content/uploads/2022/06/Cupertino-Material-Animation.gif" height={400} />
     </div>
   }
 

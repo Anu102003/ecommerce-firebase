@@ -142,7 +142,7 @@ function Card({ product, wishlistCard }) {
                     <p key={index}>{rating}</p>
                   ))}
                 </p>
-                <p className="ratings__length">{product.review.length}</p>
+                {/* <p className="ratings__length">{product.review.length}</p> */}
               </div>
             }
 

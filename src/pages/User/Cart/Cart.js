@@ -59,7 +59,7 @@ export const Cart = () => {
     }, [])
     if (loading) {
         return <div className='order-table'>
-            <img src="https://www.syncfusion.com/blogs/wp-content/uploads/2022/06/Cupertino-Material-Animation.gif" height={500} />;
+            <img src="https://www.syncfusion.com/blogs/wp-content/uploads/2022/06/Cupertino-Material-Animation.gif" height={500} />
         </div>
     }
     return (
